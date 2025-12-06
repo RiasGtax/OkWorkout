@@ -1,16 +1,72 @@
-# React + Vite
+# OkWorkout
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive weekly workout schedule planner built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Schedule Grid**: Click on time slots to plan your workouts across the week
+- **Full-Page Layout**: Schedule fits the entire viewport without scrolling
+- **Dark Theme**: Sleek red and grey color scheme
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Modern UI**: Clean interface with smooth animations and hover effects
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19.2.0
+- Vite 7.2.6
+- CSS Variables for theming
+- Inter font family
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Build
+
+```bash
+npm run build
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Header.jsx          # Header with logo and branding
+│   ├── Header.css          # Header styles
+│   ├── WeekSchedule.jsx    # Interactive schedule grid
+│   └── WeekSchedule.css    # Schedule styles
+├── App.jsx                 # Main application component
+├── App.css                 # Application styles
+├── index.css               # Global styles and design system
+└── main.jsx                # Application entry point
+```
+
+## Color Scheme
+
+- **Primary Red**: #a52525
+- **Background**: #1a1a1a (dark grey)
+- **Surface**: #252525 (mid grey)
+- **Text**: #e0e0e0 (light grey)
+
+## License
+
+This project is open source and available under the MIT License.
