@@ -2,6 +2,8 @@
 
 A modern, interactive weekly workout schedule planner built with React and Vite.
 
+Demo page: https://riasgtax.github.io/OkWorkout/
+
 ## Features
 
 - **Interactive Schedule Grid**: Click on time slots to plan your workouts across the week
