@@ -105,7 +105,8 @@ const WeekSchedule = () => {
                 <div className="schedule-grid">
                     {/* Day headers */}
                     <div className="day-headers">
-                        <div className="time-column-header">Time</div>
+                        {/* Currently not displaying the time label */}
+                        {/* <div className="time-column-header"></div> */}
                         {DAYS.map(day => (
                             <div key={day} className="day-header">
                                 <span className="day-name">{day}</span>
@@ -145,7 +146,8 @@ const WeekSchedule = () => {
                         {/* Regular time slots */}
                         {TIME_SLOTS.map(time => (
                             <div key={time} className="time-row">
-                                <div className="time-label">{time}</div>
+                                {/* Currently not displaying the time label */}
+                                {/* <div className="time-label">{time}</div> */}
                                 {DAYS.map(day => {
                                     const workout = getScheduledWorkout(day, time);
                                     const isRestDay = isDayRest(day);
