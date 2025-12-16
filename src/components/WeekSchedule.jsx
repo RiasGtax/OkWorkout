@@ -14,6 +14,7 @@ const WORKOUT_TYPES = [
     { id: 'yoga', name: 'Yoga', color: 'var(--workout-yoga)' },
     { id: 'hiit', name: 'HIIT', color: 'var(--workout-hiit)' },
     { id: 'stretching', name: 'Stretching', color: 'var(--workout-stretching)' },
+    { id: 'textInput', name: 'Text Input', color: 'var(--workout-text-input)' },
     { id: 'rest', name: 'Rest', color: 'var(--workout-rest)' }
 ];
 
@@ -75,10 +76,23 @@ const WeekSchedule = () => {
                     [key]: {
                         type: selectedWorkoutType,
                         name: selectedType.name,
+                        note: selectedWorkoutType === 'textInput' ? '' : undefined
                     }
                 }));
             }
         }
+    };
+
+    // Update note text for textInput type
+    const handleNoteChange = (day, time, text) => {
+        const key = `${day}-${time}`;
+        setScheduledWorkouts(prev => ({
+            ...prev,
+            [key]: {
+                ...prev[key],
+                note: text
+            }
+        }));
     };
 
     // Check if a slot has a scheduled workout
@@ -120,9 +134,9 @@ const WeekSchedule = () => {
                         {/* Rest day overlay cells - absolutely positioned */}
                         {DAYS.map((day, dayIndex) => {
                             if (isDayRest(day)) {
-                                // Calculate position: skip time column (80px) + previous day columns
-                                const columnWidth = `calc((100% - 80px) / 7)`;
-                                const leftPosition = `calc(80px + ${columnWidth} * ${dayIndex})`;
+                                // Calculate position: width / 7 * dayIndex
+                                const columnWidth = `calc(100% / 7)`;
+                                const leftPosition = `calc((${columnWidth} * ${dayIndex}))`;
 
                                 return (
                                     <div
@@ -153,18 +167,47 @@ const WeekSchedule = () => {
                                     const isRestDay = isDayRest(day);
 
                                     return (
-                                        <button
+                                        <div
                                             key={`${day}-${time}`}
                                             className={`time-slot ${workout && !isRestDay ? `has-workout workout-${workout.type}` : ''} ${isRestDay ? 'hidden-rest' : ''}`}
-                                            onClick={() => handleSlotClick(day, time)}
-                                            aria-label={`${day} at${time}`}
+                                            onClick={() => {
+                                                if (workout?.type !== 'textInput') {
+                                                    handleSlotClick(day, time);
+                                                }
+                                            }}
+                                            aria-label={`${day} at ${time}`}
                                         >
                                             {workout && !isRestDay && (
-                                                <div className="workout-content">
-                                                    <span className="workout-name">{workout.name}</span>
-                                                </div>
+                                                <>
+                                                    {workout.type === 'textInput' ? (
+                                                        <>
+                                                            <textarea
+                                                                className="workout-text-input-area"
+                                                                value={workout.note || ''}
+                                                                onChange={(e) => handleNoteChange(day, time, e.target.value)}
+                                                                placeholder="Type here..."
+                                                                onClick={(e) => e.stopPropagation()}
+                                                                spellcheck="false"
+                                                            />
+                                                            <button
+                                                                className="delete-workout-btn"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleSlotClick(day, time);
+                                                                }}
+                                                                title="Remove note"
+                                                            >
+                                                                X
+                                                            </button>
+                                                        </>
+                                                    ) : (
+                                                        <div className="workout-content">
+                                                            <span className="workout-name">{workout.name}</span>
+                                                        </div>
+                                                    )}
+                                                </>
                                             )}
-                                        </button>
+                                        </div>
                                     );
                                 })}
                             </div>
