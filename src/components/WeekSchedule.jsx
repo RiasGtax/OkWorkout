@@ -9,18 +9,18 @@ const TIME_SLOTS = [
 ];
 
 const WORKOUT_TYPES = [
+    { id: 'stretching', name: 'Stretching', color: 'var(--workout-stretching)' },
     { id: 'cardio', name: 'Cardio', color: 'var(--workout-cardio)' },
     { id: 'strength', name: 'Strength', color: 'var(--workout-strength)' },
     { id: 'yoga', name: 'Yoga', color: 'var(--workout-yoga)' },
     { id: 'hiit', name: 'HIIT', color: 'var(--workout-hiit)' },
-    { id: 'stretching', name: 'Stretching', color: 'var(--workout-stretching)' },
     { id: 'textInput', name: 'Text Input', color: 'var(--workout-text-input)' },
-    { id: 'rest', name: 'Rest', color: 'var(--workout-rest)' }
+    { id: 'rest', name: 'Rest Day', color: 'var(--workout-rest)' }
 ];
 
 const WeekSchedule = () => {
     // State to track selected workout type
-    const [selectedWorkoutType, setSelectedWorkoutType] = useState('cardio');
+    const [selectedWorkoutType, setSelectedWorkoutType] = useState('stretching');
 
     // State to track scheduled workouts: { "Monday-06:00": { type: "cardio", name: "Cardio" }, ... }
     const [scheduledWorkouts, setScheduledWorkouts] = useState({});
